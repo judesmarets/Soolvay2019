@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block body %}
+
+<h2>Please login to ULB Confessions</h2>
+    {% if error %}
+   	<strong><p style="color:red">{{ error }}</p></strong>
+   	{% endif %}
+   	{% if error1 %}
+	<div style='float:right'>
+   	<h3><strong><p style="color:red">{{ error1 }}</p></strong></h3>
+   	</div>
+   	{% endif %}
+    
+<form method='GET'>
+	<label for='username'>Enter your username please :</label>
+	<input type='text' required placeholder='your username' name='username' id='username'><br/>
+	<label for='password'>Enter your password please :</label>
+	<input type='password' required placeholder='Your password' name='password' id='password'><br/>
+	<input type='submit' value='Log in!'>
+</form>
+
+<p><a href="http://127.0.0.1:8000/register/" > If you don't have an account...</a> </p>
+
+
+
+{% endblock %}
