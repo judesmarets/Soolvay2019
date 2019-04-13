@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Se Confesser
+{% endblock %}
+
+{% block body %}
+
+	{% if error %}
+	<div style='float:right'>
+   	<h3><strong><p style="color:red">{{ error }}</p></strong></h3>
+   	</div>
+   	{% endif %}
+
+
+<form method='GET'>
+	<h2><label for='titre'>Titre :</label></h2></div>
+	<input type='text' required placeholder='Titre' name='titre' id='titre'><br/>
+	<h3><label for='confession'>Confessez-vous mon enfant :</label></h3></div>
+    <textarea name="confession" cols="40" rows="10" placeholder= '...'></textarea><br/>
+    <h3><label for='hashtags'>Ecrivez vos hashtags séparés d'un espace</label></h3></div>
+    <textarea name="hashtags" cols="40" rows="4" placeholder= '#voshashtags#'></textarea>    
+    <br/>
+	<input type='submit' value='Trop tard'>
+</form>
+</br>
+
+<form action="/home" method="get">
+<input type='submit' value='Home page'>
+</form>
+
+
+
+	
+{% endblock %}
