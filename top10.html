@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}
+TOPS
+{% endblock %}
+
+{% block body %}
+			
+	
+	{% if error %}
+	<div style='float:right'>
+   	<h3><strong><p style="color:red">{{ error }}</p></strong></h3>
+   	</div>
+   	{% endif %}
+	
+	
+	<h1>Top 5 des Hashtags</h1>
+	
+	<ol>
+		{% for v in dict_hashtags %}
+		
+			
+			<h2><li><strong><font color='blue'>{{v.text}}</font></strong> SCORE : <strong>{{v.total}}</strong> </li></h2>
+
+		
+		
+		
+		{% endfor %}
+	</ol>
+	
+
+	
+	
+	<h1>Top Confessions</h1>
+	
+	
+	<ol>
+	
+		{% for i in dict_tops %}
+
+		
+					<div class="w-25 p-3" style="background-color: #eee;">
+				    <u><h5><strong> {{i.titre}} </strong></h5></u>
+				    {{i.confession}}
+				    </div>
+				    <button type="button" class='btn btn-success'><strong>LIKES : {{i.total}}</strong></button>
+		
+		
+			
+		{% endfor %}
+	
+	</ol>
+	
+	<h1>Flop Confessions</h1>
+	
+	<ol>
+	
+		{% for i in dict_flops %}
+		
+			
+		 			<div class="w-25 p-3" style="background-color: #eee;">
+				    <u><h5><strong> {{i.titre}} </strong></h5></u>
+				    {{i.confession}}
+				    </div>
+				    <button type="button" class='btn btn-danger'><strong>DISLIKES : {{i.total}}</strong></button>
+		
+			
+		{% endfor %}
+	
+	</ol>
+	
+	
+	
+
+{% endblock %}
