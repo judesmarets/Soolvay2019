@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Register to ULB Confessions
+{% endblock %}
+
+{% block body %}
+
+<h2>Create a new account to ULB Confessions</h2>
+
+	{% if error2 %}
+   	<strong><p style="color:red">{{ error2 }}</p></strong>
+   	{% endif %}
+   	{% if error3 %}
+	<div style='float:right'>
+   	<h3><strong><p style="color:red">{{ error3 }}</p></strong></h3>
+   	</div>
+   	{% endif %}
+
+<form method='GET'>
+	<label for='username'> Username please :</label>
+	<input type='text' required placeholder='Your username' name='username' id='username'><br/>
+	{% if error1 %}
+   	<strong><p style="color:red">{{ error1 }}</p></strong>
+   	{% endif %}
+	<label for='password'>Create a secured password :</label>
+	<input type='password' required placeholder='Your password' name='password' id='password'><br/>
+	<label for='password_confirm'>Repeat it here please :</label>
+	<input type='password' required placeholder='Your password again' name='confirmpassword' id='confirmpassword'><br/>
+	{% if error %}
+   	<strong><p style="color:red">{{ error }}</p></strong>
+   	{% endif %}
+	<input type='submit' value='Create your account'>
+</form>
+
+{% endblock %}
