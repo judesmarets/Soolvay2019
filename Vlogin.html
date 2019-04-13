@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Moderator Login
+{% endblock %}
+
+{% block body %}
+<center>
+<h2>Moderator Login</h2>
+    {% if error %}
+   	<strong><p style="color:red">{{ error }}</p></strong>
+   	{% endif %}
+    
+<form method='GET'>
+	
+	<label for='password'>Enter moderator password please :</label>
+	<input type='password' required placeholder='Password' name='password' id='password'><br/>
+	<input type='submit' value='Log in'>
+</form>
+</center>
+
+
+
+
+{% endblock %}
