@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+	Home
+	{% if request.session.user_id %}
+	 	- Connected
+ 	{% else %}
+ 		 - Welcome Anonymous
+ 	{% endif %}
+
+
+{% endblock %}
+
+{% block body %}
+
+
+
+	{% if request.session.user_id %}
+			
+			<center>
+			<form action="/logout" method="get">
+			<input type='submit' value='Logout'>
+			</form>
+			</center>
+	
+			<h5>Connected as {{user.username}}</h5>
+			<button type="button" class='btn btn-primary'><h3>Confessions :</h3></button>
+	
+	
+		
+	
+		
+					
+		
+									
+			{% for v in post %}
+				{% if v.type == 'A' %}
+
+			
+														    
+				    <div class="w-25 p-3" style="background-color: #eee;">
+				    <u><h5><strong> {{v.titre}} </strong></h5></u>
+				    {{v.confession}}
+				    <i><font color='blue'>
+				    {% for h in v.publis_hashtag.all %}
+					{{h.text}}
+					{% endfor %}
+					</font></i></div>
+				    <p><form method= 'GET'>
+					<input type="hidden" name="postLike" value={{v.id}}></input>
+					<button type="submit" class='btn btn-success'>Like {{v.publi_like.all|length}}</button>
+					</form>
+				    <form method= 'GET'>
+					<input type="hidden" name="postDislike" value={{v.id}}></input>
+					<button type="submit" class='btn btn-danger'>Dislike {{v.publi_dislike.all|length}}</button>
+					</form></p>
+				    <p><u><strong> Commentaires </strong></u></p></div>
+					    {% for m in v.publi.all %}
+					    <ul><li><strong> {{m.auteur}} </strong>: {{m.comment}}
+					<div class="btn-group" role="group" aria-label="Basic example">
+					<form method= 'GET'>
+					<input type="hidden" name="comLike" value={{m.id}}></input>
+					<button type="submit" class="btn btn-success">Like {{m.com_like.all|length}}</button>
+					</form>
+				    <form method= 'GET'>
+					<input type="hidden" name="comDislike" value={{m.id}}></input>
+					<button type="submit" class="btn btn-danger">Dislike {{m.com_dislike.all|length}}</button>
+					</form></div></p></li></ul>
+						
+						{% endfor %}
+						
+
+					<p> 
+					<form method='GET'>
+		            <textarea name="commentaire" cols="60" rows="2" placeholder= 'Commentaires: merci de respecter les courageux anonymes'></textarea>
+		            </div>
+		            <input type="hidden" name="postCom" value={{v.id}}></input>
+					<input type="submit" value="Comment"></input>
+		            </form>
+					</p>
+			
+				{% endif %}		
+			{% endfor %}
+			       
+	
+	{% else %}
+			
+			
+			<h5>Anonymous</h5>
+			<button type="button" class='btn btn-primary'><h3>Confessions :</h3></button>
+
+		<center>
+		<form action="/login" method="get">
+		<input type='submit' value='Login'>
+		</form>
+		</center>
+			
+			
+			
+			{% for v in post %}
+				{% if v.type == 'A' %}
+				
+				
+				    <div class="w-25 p-3" style="background-color: #eee;">
+				    <u><h5><strong> {{v.titre}} </strong></h5></u>
+				    {{v.confession}}
+				    <i><font color='blue'>
+				    {% for h in v.publis_hashtag.all %}
+					{{h.text}}
+					{% endfor %}
+					</font></i></div>
+				<p><strong> Commentaires </strong></p></div>
+				    {% for m in v.publi.all %}
+				    <ul><li><strong> {{m.auteur}} </strong>: {{m.comment}} </li></ul>
+					{% endfor %}
+				
+				{% endif %}	
+			{% endfor %}
+			
+		
+			
+	
+	{% endif %}		    
+			    
+    
+{% endblock %}	
