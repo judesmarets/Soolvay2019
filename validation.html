@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Validation
+{% endblock %}
+
+{% block body %}
+
+
+	<h3><strong>Publications en attente :</strong></h3>
+	{% for v in post %}
+				{% if v.type == 'W' %}
+			
+														    
+				    <div class="w-25 p-3" style="background-color: #eee;">
+				    <u><h5><strong> {{v.titre}} </strong></h5></u>
+				    {{v.confession}}
+				    <i><font color='blue'>
+				    {% for h in v.publis_hashtag.all %}
+					{{h.text}}
+					{% endfor %}
+					</font></i></div>
+				  	<form method= 'GET'>
+					<input type="hidden" name="confirm" value={{v.id}}></input>
+					<button type="submit" class='btn btn-primary'> Poster </button>
+					</form>
+					<form method= 'GET'>
+					<input type="hidden" name="reject" value={{v.id}}></input>
+					<button type="submit" class='btn btn-danger'> Refuser </button>
+					</form>
+				  	<p>------------------------------------------------------------------------------------------</p>
+				  	
+							
+				  	
+			
+				{% endif %}	
+	{% endfor %}			
+	
+	<h3><strong>Publications rejetées :</strong></h3>	
+	{% for v in post %}
+				{% if v.type == 'R' %}
+			
+														    
+				    <div class="w-25 p-3" style="background-color: #eee;">
+				    <u><h5><strong> {{v.titre}} </strong></h5></u>
+				    {{v.confession}}
+				    <i><font color='blue'>
+				    {% for h in v.publis_hashtag.all %}
+					{{h.text}}
+					{% endfor %}
+					</font></i></div>
+					
+				  	<p>------------------------------------------------------------------------------------------</p>
+				{% endif %}
+	
+	{% endfor %}
+
+
+
+{% endblock %}
